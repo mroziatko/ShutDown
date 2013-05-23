@@ -21,6 +21,7 @@ namespace Vypinac
         public Form1()
         {
             InitializeComponent();
+            radioButton1.Checked = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -58,11 +59,9 @@ namespace Vypinac
             sekundy += minuty * 60;
             milisekundy = sekundy * 1000;
             milisecends = milisekundy;
-           // MessageBox.Show(milisekundy.ToString());
             timer1.Interval = milisekundy;
             timer2.Interval = 1000;
-            timer1.Start();
-           // odpocet.Start();
+            timer1.Start();           
             timer2.Start();
            
         }
@@ -70,8 +69,18 @@ namespace Vypinac
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
-            //MessageBox.Show("Teray bz som vypol");
+            if (radioButton1.Checked == true)
+            {
+                ShutDown();
+            }
+            if (radioButton2.Checked == true)
+            {
+                Restart();
+            }
+        }
 
+        private void Restart() 
+        {
             ManagementBaseObject mboShutdown = null;
             ManagementClass mcWin32 = new ManagementClass("Win32_OperatingSystem");
             mcWin32.Get();
@@ -82,19 +91,18 @@ namespace Vypinac
                      mcWin32.GetMethodParameters("Win32Shutdown");
 
             // Flag 1 means we want to shut down the system. Use "2" to reboot.
-            mboShutdownParams["Flags"] = "1";
+            mboShutdownParams["Flags"] = "2";
             mboShutdownParams["Reserved"] = "0";
             foreach (ManagementObject manObj in mcWin32.GetInstances())
             {
                 mboShutdown = manObj.InvokeMethod("Win32Shutdown",
                                                mboShutdownParams, null);
             }
-        
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void ShutDown()
         {
-
+           
         }
 
         private void timer2_Tick(object sender, EventArgs e)

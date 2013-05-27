@@ -27,6 +27,7 @@ namespace Vypinac
             
             timer1.Interval = 1000;
             timer1.Start();
+            this.ShowInTaskbar = true;
         }
         
         private void Restart() 
@@ -112,6 +113,28 @@ namespace Vypinac
                 //ak to len zavrieme
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            this.ShowInTaskbar = false;
+                notifyIcon1.Visible = true;
+                this.WindowState = FormWindowState.Minimized;
+                this.Hide();
+            
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            notifyIcon1.Visible = false;
+            this.Show();
+        }
+
+        
+
+     
 
 
     }

@@ -16,69 +16,19 @@ namespace Vypinac
 {
     public partial class Form1 : Form
     {
-        int milisecends;
+        DateTime time = new DateTime();
+        int akcia = 0;
+        public static int milisekundy = 0;
+        
 
         public Form1()
         {
             InitializeComponent();
-            radioButton1.Checked = true;
+            
+            timer1.Interval = 1000;
+            timer1.Start();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //Thread odpocet;
-            int hodiny;
-            if (richTextBox1.Text.Count() != 0)
-            {
-                hodiny = Convert.ToInt32(richTextBox1.Text);
-            }
-            else
-            {
-                hodiny = 0;
-            }
-            int minuty ;
-            if (richTextBox2.Text.Count() != 0)
-            {
-                minuty = Convert.ToInt32(richTextBox2.Text);
-            }
-            else
-            {
-                minuty = 0;
-            }
-            minuty += hodiny * 60;
-
-            int sekundy;
-            if (richTextBox3.Text.Count() != 0)
-            {
-                sekundy = Convert.ToInt32(richTextBox3.Text);
-            }
-            else
-                sekundy = 0;
-
-            int milisekundy;
-            sekundy += minuty * 60;
-            milisekundy = sekundy * 1000;
-            milisecends = milisekundy;
-            timer1.Interval = milisekundy;
-            timer2.Interval = 1000;
-            timer1.Start();           
-            timer2.Start();
-           
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            timer1.Stop();
-            if (radioButton1.Checked == true)
-            {
-                ShutDown();
-            }
-            if (radioButton2.Checked == true)
-            {
-                Restart();
-            }
-        }
-
+        
         private void Restart() 
         {
             ManagementBaseObject mboShutdown = null;
@@ -91,7 +41,7 @@ namespace Vypinac
                      mcWin32.GetMethodParameters("Win32Shutdown");
 
             // Flag 1 means we want to shut down the system. Use "2" to reboot.
-            mboShutdownParams["Flags"] = "2";
+            mboShutdownParams["Flags"] = akcia;
             mboShutdownParams["Reserved"] = "0";
             foreach (ManagementObject manObj in mcWin32.GetInstances())
             {
@@ -99,24 +49,70 @@ namespace Vypinac
                                                mboShutdownParams, null);
             }
         }
+ 
 
-        private void ShutDown()
+        private void AktualnyCas(object sender, EventArgs e)
         {
            
+            time = DateTime.Now;
+
+            label4.Text = time.Second.ToString("D2");
+            label5.Text = time.Minute.ToString("D2");
+            label6.Text = time.Hour.ToString("D2");
+
+            if (akcia != 0)
+            {
+                TimeSpan odpocet = TimeSpan.FromSeconds(milisekundy / 1000);
+                label3.Text = odpocet.Seconds.ToString("D2");
+                label9.Text = odpocet.Minutes.ToString("D2");
+                label10.Text = odpocet.Hours.ToString("D2");
+                milisekundy -= 1000;
+     
+            }
+        }
+
+  
+
+        private void shutDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Vypnut vypnut = new Vypnut();
+            vypnut.ShowDialog();
+
+            try
+            {
+                timer2.Interval = milisekundy;
+                akcia = 1;
+                timer2.Start();
+            }
+            catch
+            {
+            }
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            TimeSpan time = TimeSpan.FromSeconds((milisecends/1000)-1);
-            label6.Text = time.Hours.ToString();
-            label5.Text = time.Minutes.ToString();
-            label4.Text = time.Seconds.ToString();
-            milisecends -= 1000;
-            if (milisecends == 0)
-            {
-                timer2.Stop();
-            }
-
+            timer2.Stop();
+            Restart();
         }
+
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Vypnut vypnut = new Vypnut();
+            vypnut.ShowDialog();
+
+            // MessageBox.Show(milisekundy.ToString());
+            try
+            {
+                timer2.Interval = milisekundy;
+                akcia = 2;
+                timer2.Start();
+            }
+            catch
+            {
+                //ak to len zavrieme
+            }
+        }
+
+
     }
 }

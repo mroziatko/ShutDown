@@ -53,6 +53,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vypnut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vypnut.Designer.cs">
+      <DependentUpon>Vypnut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShutDownGateway.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -66,6 +73,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Vypnut.resx">
+      <DependentUpon>Vypnut.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

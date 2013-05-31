@@ -50,6 +50,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.hybernateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,12 +120,15 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.shutDownToolStripMenuItem,
             this.restartToolStripMenuItem,
+            this.hybernateToolStripMenuItem,
             this.alarmToolStripMenuItem,
+            this.sleepToolStripMenuItem,
+            this.lockToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(437, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(458, 25);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -148,13 +154,16 @@
             this.alarmToolStripMenuItem.Name = "alarmToolStripMenuItem";
             this.alarmToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
             this.alarmToolStripMenuItem.Text = "Alarm";
+            this.alarmToolStripMenuItem.Click += new System.EventHandler(this.alarmToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
+            this.aboutToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Kristen ITC", 9F);
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(59, 21);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -235,11 +244,35 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
+            // hybernateToolStripMenuItem
+            // 
+            this.hybernateToolStripMenuItem.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hybernateToolStripMenuItem.Name = "hybernateToolStripMenuItem";
+            this.hybernateToolStripMenuItem.Size = new System.Drawing.Size(79, 21);
+            this.hybernateToolStripMenuItem.Text = "Hibernate";
+            this.hybernateToolStripMenuItem.Click += new System.EventHandler(this.hybernateToolStripMenuItem_Click);
+            // 
+            // sleepToolStripMenuItem
+            // 
+            this.sleepToolStripMenuItem.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sleepToolStripMenuItem.Name = "sleepToolStripMenuItem";
+            this.sleepToolStripMenuItem.Size = new System.Drawing.Size(51, 21);
+            this.sleepToolStripMenuItem.Text = "Sleep";
+            this.sleepToolStripMenuItem.Click += new System.EventHandler(this.sleepToolStripMenuItem_Click);
+            // 
+            // lockToolStripMenuItem
+            // 
+            this.lockToolStripMenuItem.Font = new System.Drawing.Font("Kristen ITC", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lockToolStripMenuItem.Name = "lockToolStripMenuItem";
+            this.lockToolStripMenuItem.Size = new System.Drawing.Size(50, 21);
+            this.lockToolStripMenuItem.Text = "Lock";
+            this.lockToolStripMenuItem.Click += new System.EventHandler(this.lockToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 198);
+            this.ClientSize = new System.Drawing.Size(458, 198);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label1);
@@ -260,7 +293,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "DogAlarm 0.3";
+            this.Text = "DogClock 0.3";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -290,6 +323,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ToolStripMenuItem hybernateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sleepToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lockToolStripMenuItem;
     }
 }
 

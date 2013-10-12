@@ -31,7 +31,7 @@ namespace Vypinac
         public Form1()
         {
             InitializeComponent();
-            
+
             timer1.Interval = 1000;
             timer1.Start();
             this.ShowInTaskbar = true;
@@ -110,45 +110,10 @@ namespace Vypinac
         }
 
   
-
-        private void shutDownToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Vypnut vypnut = new Vypnut();
-            vypnut.ShowDialog();
-
-            try
-            {
-                timer2.Interval = milisekundy;
-                akcia = 1;
-                timer2.Start();
-            }
-            catch
-            {
-            }
-        }
-
         private void timer2_Tick(object sender, EventArgs e)
         {
             timer2.Stop();
             Restart();
-        }
-
-        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Vypnut vypnut = new Vypnut();
-            vypnut.ShowDialog();
-
-            // MessageBox.Show(milisekundy.ToString());
-            try
-            {
-                timer2.Interval = milisekundy;
-                akcia = 2;
-                timer2.Start();
-            }
-            catch
-            {
-                //ak to len zavrieme
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -169,24 +134,53 @@ namespace Vypinac
             this.Show();
         }
 
-        private void alarmToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Not yet.\r\nComming Soon", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
+        
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Designer: Patuch\r\nCoder:mroziatko\r\nManager:Livuiq", "DogClock");
         }
 
-        private void hybernateToolStripMenuItem_Click(object sender, EventArgs e)
+         //click on picture, show second dialog, with settings
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Vypnut hybernate = new Vypnut();
-            hybernate.ShowDialog();
+            Vypnut vypnut = new Vypnut();
+            vypnut.ShowDialog();
+
             try
             {
                 timer2.Interval = milisekundy;
-                akcia = 3;
+                akcia = 1;
+                timer2.Start();
+            }
+            catch
+            {
+            }
+        }
+
+         //button show what is he
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(this.pictureBox1, "ShutDown");
+        }
+
+
+        private void pictureBox2_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(this.pictureBox2, "Sleep");
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Vypnut vypnut = new Vypnut();
+            vypnut.ShowDialog();
+
+            // MessageBox.Show(milisekundy.ToString());
+            try
+            {
+                timer2.Interval = milisekundy;
+                akcia = 2;
                 timer2.Start();
             }
             catch
@@ -195,23 +189,23 @@ namespace Vypinac
             }
         }
 
-        private void sleepToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pictureBox4_Click(object sender, EventArgs e)
         {
-            Vypnut hybernate = new Vypnut();
-            hybernate.ShowDialog();
-            try
-            {
-                timer2.Interval = milisekundy;
-                akcia = 4;
-                timer2.Start();
-            }
-            catch
-            {
-                //ak to len zavrieme
-            }
+            MessageBox.Show("Not yet.\r\nComming Soon", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void lockToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pictureBox4_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(this.pictureBox4, "Alarm");
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
         {
             Vypnut hybernate = new Vypnut();
             hybernate.ShowDialog();
@@ -227,6 +221,39 @@ namespace Vypinac
             }
         }
 
+        private void pictureBox6_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(this.pictureBox6, "Lock");
+        }
+
+        private void pictureBox5_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(this.pictureBox5, "Sleep");
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Vypnut hybernate = new Vypnut();
+            hybernate.ShowDialog();
+            try
+            {
+                timer2.Interval = milisekundy;
+                akcia = 4;
+                timer2.Start();
+            }
+            catch
+            {
+                //ak to len zavrieme
+            }
+        }
+
+        private void pictureBox3_MouseEnter(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(this.pictureBox3, "Hybernate");
+        }
         
 
      
